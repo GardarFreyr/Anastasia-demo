@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="is">
+<head>
+<!-- ================================================================
+  ANASTASIA BEAUTY STUDIO – ein skrá, ekkert framework
+  ----------------------------------------------------------------
+  GARÐAR – það sem þarf að skipta út (leitaðu að "GARÐAR:"):
+    1) NOONA_URL         – efst í <script id="stillingar"> (eitt sæti,
+                           allir "Bóka tíma"-takkar uppfærast sjálfkrafa)
+    2) MEDFERDAFLOKKAR – meðferðirnar, flokkaðar, í sama script
+    3) Myndir            – vistaðu ljósmyndir í möppuna "myndir/" með réttum
+                           skráarnöfnum (sjá "GARÐAR: MYND" athugasemdir) og
+                           þær birtast sjálfkrafa í stað plásshaldara
+    4) Texti um Anastasiu, opnunartímar, heimilisfang, sími, netfang
+    5) GOOGLE_MAPS_LINK_HERE – hlekkur á Google Maps
+================================================================= -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anastasia Beauty Studio | Snyrtistofa á höfuðborgarsvæðinu</title>
+<meta name="description" content="Anastasia Beauty Studio er snyrti- og húðmeðferðarstofa á höfuðborgarsvæðinu. Kynntu þér meðferðirnar og bókaðu tíma á netinu.">
+<meta name="theme-color" content="#FBF8F5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================= LITIR OG GRUNNUR =================
+   Radíusreglan: fletir (kort, myndir) = 16px, takkar = pillu-form. */
+:root{
+  --bg:        #FBF8F5;  /* rjómahvítur grunnur */
+  --bg-soft:   #F6F0EB;  /* aðeins dekkri bönd  */
+  --blush:     #F5E9E7;  /* bleik-mjúk bönd     */
+  --card:      #FFFEFC;
+  --line:      #EAE0D9;
+  --line-soft: #E9D9D4;
+  --ink:       #33272A;  /* dökkur texti með hlýjum undirtón */
+  --muted:     #6E5D60;
+  --accent:    #8C5A62;  /* djúp rósamóva – takkar, hlekkir, stjörnur */
+  --accent-strong: #7A4C54;
+  --accent-soft:   #B98A90;
+  --dark:      #3F2E33;  /* lokakafli síðunnar */
+  --dark-text: #F6EDEA;
+  --dark-muted:#D6C2C0;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius: 16px;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  font-family:'Mulish', system-ui, sans-serif;
+  font-size:16px; line-height:1.7;
+  color:var(--ink); background:var(--bg);
+}
+::selection{ background:var(--blush); color:var(--accent-strong); }
+img{ max-width:100%; display:block; }
+a{ color:var(--accent); }
+h1,h2,h3{ font-family:'Cormorant Garamond', Georgia, serif; font-weight:500; line-height:1.15; letter-spacing:-0.01em; }
+.wrap{ max-width:1120px; margin-inline:auto; padding-inline:22px; }
+[id]{ scroll-margin-top:84px; }
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.skip{ position:absolute; left:-9999px; top:0; background:var(--ink); color:#fff; padding:10px 18px; border-radius:0 0 12px 0; z-index:99; }
+.skip:focus{ left:0; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+/* ================= TAKKAR ================= */
+.btn{
+  display:inline-block; font-family:'Mulish',sans-serif; font-size:15px; font-weight:700;
+  padding:14px 30px; border-radius:999px; text-decoration:none; text-align:center;
+  transition:background .2s ease, color .2s ease, border-color .2s ease, transform .15s ease;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-primary{ background:var(--accent); color:#fff; }
+.btn-primary:hover{ background:var(--accent-strong); }
+.btn-ghost{ background:transparent; color:var(--ink); border:1px solid rgba(51,39,42,.28); }
+.btn-ghost:hover{ border-color:var(--accent); color:var(--accent-strong); }
+.btn-light{ background:var(--bg); color:var(--accent-strong); }
+.btn-light:hover{ background:#fff; }
+
+/* ================= HAUS ================= */
+header.site{
+  position:sticky; top:0; z-index:40;
+  background:rgba(251,248,245,.92);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+header.site .bar{ display:flex; align-items:center; justify-content:space-between; height:66px; }
+.brand{ text-decoration:none; color:var(--ink); display:flex; align-items:baseline; gap:9px; }
+.brand .nafn{ font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:600; letter-spacing:.01em; }
+.brand .tegund{ font-size:10.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+nav.adal{ display:none; }
+header.site .btn{ display:none; padding:10px 22px; font-size:14px; }
+
+/* ================= HETJUKAFLI ================= */
+.hero{ padding:56px 0 72px; }
+.hero-grid{ display:grid; gap:40px; align-items:center; }
+.hero h1{ font-size:clamp(2.7rem, 9vw, 4.3rem); font-weight:500; }
+.hero h1 .lina2{ display:block; font-style:italic; font-weight:400; color:var(--accent-strong); }
+.hero .inngangur{ margin:20px 0 30px; max-width:46ch; color:var(--muted); font-size:17px; }
+.hero .takkar{ display:flex; flex-wrap:wrap; gap:14px; }
+
+/* Mynda-plásshaldarar (skýrt merktir þar til alvöru myndir koma) */
+.ph{
+  position:relative; border-radius:var(--radius); overflow:hidden;
+  border:1px solid var(--line-soft);
+  background:linear-gradient(160deg, #F7EDEA 0%, #EFDFDB 55%, #F3E6E2 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:4px; text-align:center; padding:18px;
+}
+.ph .ph-heiti{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:var(--accent-strong); }
+.ph .ph-skyring{ font-size:12px; letter-spacing:.04em; color:var(--muted); }
+/* Alvöru ljósmynd í plásshaldara: ef skrána vantar fjarlægir onerror
+   myndina og textinn sést; annars þekur myndin hólfið. */
+.ph .ph-mynd{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
+.ph-hero{ aspect-ratio:1308/564; }
+
+/* ================= KAFLAR ALMENNT ================= */
+section{ padding:78px 0; }
+.h-lina{ width:44px; height:1px; background:var(--accent-soft); margin-bottom:22px; }
+.kafli-haus h2{ font-size:clamp(1.95rem, 5vw, 2.8rem); }
+.kafli-haus .undir{ margin-top:12px; color:var(--muted); max-width:56ch; }
+.mid .h-lina{ margin-inline:auto; }
+.mid{ text-align:center; }
+.mid .undir{ margin-inline:auto; }
+
+/* ================= UM ANASTASIU ================= */
+.um-grid{ display:grid; gap:40px; align-items:center; }
+.ph-portrett{ aspect-ratio:4/5; max-width:420px; }
+.um-texti p{ color:var(--muted); margin-top:16px; max-width:58ch; }
+.um-texti p:first-of-type{ color:var(--ink); }
+.menntun{ margin-top:28px; padding-left:20px; border-left:2px solid var(--blush); }
+.menntun h3{ font-size:22px; margin-bottom:10px; }
+.menntun ul{ list-style:none; }
+.menntun li{ padding:7px 0; color:var(--muted); font-size:15px; }
+.menntun li strong{ color:var(--ink); font-weight:600; }
+
+/* ================= MEÐFERÐIR =================
+   Flokka-spjöld með þjöppuðum röðum. Röð með lýsingu er <details>
+   og opnast þegar smellt er á hana. */
+#medferdir{ background:var(--bg-soft); }
+.flokkar{ margin-top:40px; }
+.flokkur{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px 24px 12px; box-shadow:0 10px 28px rgba(140,90,98,.05);
+  margin-bottom:18px; break-inside:avoid;
+}
+.flokkur h3{ font-size:26px; margin-bottom:12px; }
+.flokk-inngangur{ font-size:14px; color:var(--muted); margin:-4px 0 14px; }
+.med-rod{ border-top:1px solid var(--line); padding:13px 0; }
+.med-stok{ padding-right:26px; }
+.med-toppur{ display:flex; align-items:baseline; justify-content:space-between; gap:6px 16px; }
+.med-nafn{ font-weight:600; font-size:15.5px; }
+.med-toppur .verd{ font-weight:700; font-size:14.5px; color:var(--accent-strong); white-space:nowrap; }
+.med-rod .timi{ display:block; font-size:13px; color:var(--muted); margin-top:2px; }
+details.med-rod > summary{
+  list-style:none; cursor:pointer;
+  display:grid; grid-template-columns:1fr 18px; column-gap:8px; align-items:start;
+}
+details.med-rod > summary::-webkit-details-marker{ display:none; }
+details.med-rod .togg{
+  display:inline-block; font-size:19px; line-height:1.2;
+  color:var(--accent-soft); text-align:center; transform-origin:center;
+}
+details.med-rod[open] .togg{ transform:rotate(45deg); }
+.med-lysing{ margin:10px 0 4px; font-size:14px; color:var(--muted); max-width:62ch; }
+.flokkur-tilbod{ background:var(--blush); border-color:var(--line-soft); }
+.medferdir-cta{ margin-top:26px; }
+.verd-vidmid{ margin-top:26px; font-size:13.5px; color:var(--muted); }
+
+/* ================= GJAFABRÉF ================= */
+#gjafabref{ background:var(--blush); }
+.gjof{ max-width:620px; margin-inline:auto; text-align:center; }
+.gjof .merki{ font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+.gjof h2{ font-size:clamp(2.1rem, 6vw, 3rem); margin-top:12px; }
+.gjof p{ margin:16px auto 28px; color:var(--muted); max-width:48ch; }
+
+/* ================= GALLERÍ ================= */
+.galleri{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:40px; }
+.galleri .ph{ aspect-ratio:1/1; }
+.galleri .g-stor{ grid-column:span 2; aspect-ratio:16/10; }
+
+/* ================= FYRIR OG EFTIR =================
+   Myndirnar eru samsettar (fyrir efst, eftir neðst) svo þær eru sýndar
+   heilar, ekki klipptar. Myndin flýtur í náttúrulegri hæð; plásshaldari
+   sést aðeins ef skrána vantar. */
+.fe-grid{ display:grid; gap:28px; margin-top:40px; }
+.fe-mynd{
+  position:relative; border-radius:var(--radius); overflow:hidden;
+  border:1px solid var(--line-soft); min-height:320px;
+  background:linear-gradient(160deg, #F7EDEA 0%, #EFDFDB 55%, #F3E6E2 100%);
+}
+.fe-mynd img{ position:relative; z-index:1; width:100%; height:auto; display:block; }
+.fe-mynd .ph-fyllitexti{ position:absolute; inset:0; z-index:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; text-align:center; padding:18px; }
+.fe-mynd .ph-heiti{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:var(--accent-strong); }
+.fe-mynd .ph-skyring{ font-size:12px; letter-spacing:.04em; color:var(--muted); }
+.par .medferd-nafn{ margin-top:14px; text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:var(--accent-strong); }
+
+/* ================= UMSAGNIR ================= */
+#umsagnir{ background:var(--bg-soft); }
+.umsagnir-grid{ display:grid; gap:18px; margin-top:40px; }
+.umsogn{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:28px 26px; box-shadow:0 10px 28px rgba(140,90,98,.05);
+}
+.stjornur{ color:var(--accent-soft); font-size:15px; letter-spacing:.18em; }
+.umsogn blockquote{ margin:14px 0 18px; font-family:'Cormorant Garamond',serif; font-size:21px; line-height:1.45; color:var(--ink); }
+.umsogn .hver{ font-size:14px; font-weight:700; }
+.umsogn .hlutverk{ font-size:13px; color:var(--muted); }
+
+/* ================= OPNUNARTÍMAR OG STAÐSETNING ================= */
+.stad-grid{ display:grid; gap:36px; margin-top:40px; }
+.timar li{ list-style:none; display:flex; justify-content:space-between; gap:16px; padding:11px 0; font-size:15.5px; }
+.timar li span:first-child{ font-weight:600; }
+.timar li span:last-child{ color:var(--muted); }
+.stad-kort{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:30px 28px;
+}
+.stad-kort h3{ font-size:23px; margin-bottom:12px; }
+.stad-kort p{ color:var(--muted); font-size:15.5px; }
+.stad-kort .maps{ display:inline-block; margin-top:18px; font-weight:700; font-size:15px; color:var(--accent-strong); text-decoration-thickness:1px; text-underline-offset:4px; }
+
+/* ================= BÓKUN (dökkt lokastef) ================= */
+#bokun{ background:var(--dark); color:var(--dark-text); padding:92px 0; }
+#bokun .h-lina{ background:var(--accent-soft); }
+#bokun h2{ font-size:clamp(2.2rem, 6vw, 3.1rem); }
+#bokun .undir{ color:var(--dark-muted); }
+#bokun .takkar{ margin-top:30px; }
+.samband{ margin-top:34px; display:flex; flex-direction:column; gap:6px; font-size:15.5px; color:var(--dark-muted); }
+.samband strong{ color:var(--dark-text); font-weight:600; }
+.samband a{ color:var(--dark-text); text-decoration-thickness:1px; text-underline-offset:4px; }
+
+/* Auka-plássið neðst er fyrir bókunarstikuna á síma */
+footer.site{ background:var(--dark); color:var(--dark-muted); padding:0 0 calc(96px + env(safe-area-inset-bottom)); }
+footer.site .inni{ border-top:1px solid rgba(246,237,234,.14); padding-top:26px; display:flex; flex-direction:column; gap:6px; font-size:13.5px; }
+footer.site a{ color:var(--dark-muted); }
+
+/* ================= FÖST BÓKUNARSTIKA (sími) ================= */
+#bokunar-stika{
+  position:fixed; left:0; right:0; bottom:0; z-index:50;
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(251,248,245,.94);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);
+  transition:transform .35s var(--ease), opacity .35s var(--ease);
+}
+#bokunar-stika .btn{ display:block; width:100%; }
+#bokunar-stika.falin{ transform:translateY(110%); opacity:0; }
+
+/* ================= HREYFING (aðeins ef notandi leyfir) =================
+   Birting við skrun er hrein CSS (animation-timeline: view()), engin JS.
+   Eldri vafrar og notendur með "reduced motion" sjá efnið strax. */
+@media (prefers-reduced-motion: no-preference){
+  html{ scroll-behavior:smooth; }
+  @keyframes birta{
+    from{ opacity:0; transform:translateY(22px); }
+    to{ opacity:1; transform:none; }
+  }
+  .inn{ animation:birta .9s var(--ease) both; }
+  .inn-2{ animation-delay:.15s; }
+  @supports (animation-timeline: view()){
+    .reveal{
+      animation:birta linear both;
+      animation-timeline:view();
+      animation-range:entry 5% entry 45%;
+    }
+  }
+  .umsogn{ transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
+  .umsogn:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(140,90,98,.09); }
+  details.med-rod .togg{ transition:transform .25s var(--ease); }
+}
+@media (prefers-reduced-motion: reduce){
+  #bokunar-stika{ transition:none; }
+}
+
+/* ================= STÆRRI SKJÁIR ================= */
+@media (min-width: 768px){
+  footer.site{ padding-bottom:36px; }
+  #bokunar-stika{ display:none; } /* stikan er bara á síma */
+  header.site .btn{ display:inline-block; }
+  section{ padding:110px 0; }
+  .hero{ padding:84px 0 110px; }
+  .hero-grid{ grid-template-columns:1.05fr .95fr; gap:56px; }
+  /* GARÐAR: hetjumyndin er breið (skiltamyndin) og hólfið hefur sömu
+     hlutföll svo allt skiltið sjáist án þess að klippast. Á tölvu er
+     hetjan stöfluð (texti yfir, mynd í fullri breidd undir). Ef þú setur
+     síðar lóðrétta stofumynd, breyttu aspect-ratio í t.d. 4/5 og settu
+     .hero-grid aftur í tvo dálka. */
+  .hero-grid{ grid-template-columns:1fr; gap:44px; }
+  .ph-hero{ aspect-ratio:1308/564; }
+  .hero .inngangur{ font-size:18px; }
+  .um-grid{ grid-template-columns:.9fr 1.1fr; gap:64px; }
+  .flokkar{ columns:2; column-gap:22px; }
+  .flokkur{ margin-bottom:22px; }
+  .galleri{ grid-template-columns:repeat(3, 1fr); }
+  .galleri .g-stor{ grid-column:span 2; grid-row:span 2; aspect-ratio:auto; }
+  .fe-grid{ grid-template-columns:1fr 1fr; gap:28px; }
+  .umsagnir-grid{ grid-template-columns:repeat(2, 1fr); gap:22px; max-width:800px; margin-inline:auto; }
+  .stad-grid{ grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+}
+@media (min-width: 1024px){
+  nav.adal{ display:flex; gap:28px; }
+  nav.adal a{ font-size:14.5px; font-weight:600; color:var(--muted); text-decoration:none; }
+  nav.adal a:hover{ color:var(--accent-strong); }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#efni">Beint í efni</a>
+
+<!-- ================================================================
+  STILLINGAR – GARÐAR: hér breytir þú öllu efni sem uppfærist sjálfkrafa
+================================================================= -->
+<script id="stillingar">
+  /* GARÐAR: 1) Límdu Noona-hlekk Anastasiu hér í stað "NOONA_LINK_HERE".
+     Allir "Bóka tíma"-takkar á síðunni sækja hlekkinn hingað.
+     Þar til hlekkurinn kemur vísa takkarnir neðst á síðuna (#bokun). */
+  const NOONA_URL = "https://noona.app/anastasiabeautystudio";
+
+  /* GARÐAR: 2) Meðferðirnar, flokkaðar. Bættu við eða breyttu að vild.
+     Hver flokkur: heiti, inngangur (má sleppa) og medferdir-listi.
+     Hver meðferð: nafn, timi, verd og lysing (má sleppa).
+     Lýsingar eru styttar og þýddar úr Noona-listanum, engum fullyrðingum
+     eða verðum var breytt.
+
+     ATH - staðfestu hjá Anastasiu:
+     - "Brow lamination" stóð "Brown Lamination" á Noona og
+       "Bbglow contouring" stóð "Bbglow countering". Ég lagaði stafsetningu.
+     - Flaxlift: stakt skipti er 13.900 kr. í bókunarkerfinu en 11.900 kr.
+       í lýsingunni. Staðfestu rétt verð.
+     - "Lúxus húðhreinsun" var í hástöfum á Noona, lagað hér. */
+  const MEDFERDAFLOKKAR = [
+    {
+      heiti: "HIFU",
+      inngangur: "HIFU hitar innri vef húðarinnar með bylgjum sem örva frumurnar til að framleiða meira kollagen. Þétting og lyfting án aðgerðar og árangurinn er mjög náttúrulegur. Sjáanlegur árangur kemur fram á allt að tveimur vikum og fullur árangur á 2 til 3 mánuðum.",
+      medferdir: [
+        { nafn: "HIFU andlitslift", timi: "60 mín.", verd: "29.900 kr.", lysing: "Þétting og lyfting á andliti, algjörlega örugg og engar fyllingar. Örvar náttúrulega vinnslu húðarinnar." },
+        { nafn: "HIFU hálsinn", timi: "40 mín.", verd: "14.900 kr." },
+        { nafn: "HIFU líkaminn, 1 svæði", timi: "40 mín.", verd: "25.000 kr." }
+      ]
+    },
+    {
+      heiti: "Fibroblast Plasma",
+      inngangur: "Fibroblast Plasma Pen er byltingarkennd meðferð sem vinnur á hrukkum, fínum línum og ummerkjum um öldrun húðar. Neistar pennans örva kollagenframleiðslu húðarinnar sem þéttist og styrkist við það. Árangurinn verður mestur á 3 til 12 vikum og fer eftir ástandi húðar hvers og eins.",
+      medferdir: [
+        { nafn: "Fibroblast Plasma andlitslift", timi: "120 mín.", verd: "45.000 kr." },
+        { nafn: "Fibroblast Plasma eyelift, allt augnsvæðið", timi: "90 mín.", verd: "39.900 kr." },
+        { nafn: "Fibroblast Plasma eyelift, efri augnlok", timi: "60 mín.", verd: "19.900 kr." },
+        { nafn: "Fibroblast Plasma eyelift, undir augum", timi: "60 mín.", verd: "19.900 kr." },
+        { nafn: "Fibroblast Plasma lift, hálsinn", timi: "120 mín.", verd: "70.000 kr." },
+        { nafn: "Fibroblast tummy tuck", timi: "120 mín.", verd: "49.900 kr.", lysing: "Þétting á maga: húðslit, naflasvæði og neðra magasvæði." },
+        { nafn: "Fibroblast húðslit", timi: "120 mín.", verd: "40.000-60.000 kr.", lysing: "Vinnur á húðslitum og þéttir húðina án inngrips. Verð fer eftir umfangi." },
+        { nafn: "Fibroblast Plasma shower", timi: "60 mín.", verd: "13.500 kr.", lysing: "Áhrifarík meðferð gegn bólum: vinnur á bakteríum, dregur úr bólgum og minnkar fituframleiðslu húðarinnar." }
+      ]
+    },
+    {
+      heiti: "Húðhreinsanir",
+      medferdir: [
+        { nafn: "Húðhreinsun", timi: "60 mín.", verd: "15.500 kr.", lysing: "Ensím-peeling, ultrasonic húðhreinsitæki, demantaslípun, algínat-andlitsmaski og LED-ljósameðferð." },
+        { nafn: "Lúxus húðhreinsun", timi: "90 mín.", verd: "17.900 kr.", lysing: "Sýrumeðferð, ultrasonic húðhreinsun, demantaslípun, andlitslyftinudd og algínat-maski með LED-ljósi." },
+        { nafn: "Hydropeel húðhreinsun", timi: "60 mín.", verd: "13.900 kr.", lysing: "Sameinar örslípun, djúpvirkt peeling og innspýtingu hýalúrónsýru og kollagens. Vinnur á fínum línum, stíflaðum svitaholum, litamun og þurri húð." },
+        { nafn: "OXYJETT húðhreinsun", timi: "60 mín.", verd: "14.500 kr.", lysing: "Súrefnismeðferð sem endurnærir andlit, bringu og hendur með blöndu af hreinsun, súrefni og vítamínum." },
+        { nafn: "Demantaslípun", timi: "60 mín.", verd: "12.900 kr.", lysing: "Ysta lag húðarinnar er fjarlægt með örsmáum kristöllum og demöntum. Húðin verður mýkri, sléttari og frísklegri. Hentar öllum aldri og öllum húðgerðum." },
+        { nafn: "CARBON peeling", timi: "60 mín.", verd: "10.900 kr.", lysing: "Virk kolagríma sem djúphreinsar svitaholur og dregur í sig fitu og óhreinindi. Hentar sérstaklega feitri og óhreinni húð." },
+        { nafn: "Carboxy", timi: "60 mín.", verd: "9.900 kr.", lysing: "Súrefnisgefandi gelmeðferð sem örvar húðina og eykur upptöku næringarefna. Sársaukalaus og hentar öllum húðgerðum." }
+      ]
+    },
+    {
+      heiti: "Peeling og sýrumeðferðir",
+      medferdir: [
+        { nafn: "PQ age peeling", timi: "60 mín.", verd: "14.900 kr.", lysing: "„Ný húð“: vinnur á litabreytingum, örum, bólum, fílapenslum, fínum línum og húðslitum. Sjáanlegur árangur eftir aðeins eitt skipti og getur varað í allt að heilt ár." },
+        { nafn: "Sýrameðferð", timi: "40 mín.", verd: "14.900 kr.", lysing: "Efnafræðilegt peeling sem dregur úr bólum, örum, hrukkum og sólarskemmdum." },
+        { nafn: "DBright peeling", timi: "45 mín.", verd: "14.900 kr.", lysing: "Vinnur á sólblettum og aldurstengdri litamyndun á andliti, höndum og bringu." },
+        { nafn: "Skin Revive, ör og post-acne", timi: "30 mín.", verd: "14.900 kr.", lysing: "Sérhæft peeling gegn örum og húðslitum, dregur verulega úr sjáanleika þeirra." },
+        { nafn: "ESABIOPEEL, Botox-áhrif", timi: "40 mín.", verd: "16.900 kr.", lysing: "Djúpörvandi peeling án nála. Örvar kollagenframleiðslu og hefur þéttandi áhrif." },
+        { nafn: "LET-peeling, augn- og munnsvæði", timi: "15 mín.", verd: "6.900 kr.", lysing: "Markviss meðferð fyrir viðkvæmu húðina í kringum augu og varir." },
+        { nafn: "OENANTHE peeling", timi: "45 mín.", verd: "16.900 kr.", lysing: "Peeling með lyftandi áhrifum: eykur súrefnisflæði, örvar efnaskipti húðarinnar og vinnur gegn slappleika." },
+        { nafn: "Peeling Trio", timi: "45 mín.", verd: "16.900 kr.", lysing: "Öflug þrenna í einni meðferð: LET fyrir augnsvæði, ESABIOPEEL fyrir enni og OENANTHE fyrir andlitið." },
+        { nafn: "DBright fyrir viðkvæm svæði", timi: "30 mín.", verd: "10.900 kr.", lysing: "Jafnar húðtón og vinnur gegn dökkum blettum og inngrónum hárum á viðkvæmum svæðum." },
+        { nafn: "Pink whitening system", timi: "30 mín.", verd: "7.900 kr.", lysing: "Sársaukalaus ítölsk meðferð sem lýsir og jafnar húðtón á viðkvæmum svæðum." }
+      ]
+    },
+    {
+      heiti: "Dermapen og meso",
+      medferdir: [
+        { nafn: "Dermapen andlit", timi: "60 mín.", verd: "13.900 kr.", lysing: "Gefur húðinni fallegan ljóma, jafnar húðtón og minnkar sjáanleika svitahola. Best að taka 3 skipti með 2 vikna millibili." },
+        { nafn: "Dermapen andlit og háls", timi: "90 mín.", verd: "15.900 kr." },
+        { nafn: "Bbglow", timi: "60 mín.", verd: "15.900 kr.", lysing: "Suðurkóresk nano-needling meðferð sem jafnar húðtón og gefur frísklegan ljóma með næringarríku BB-kremi, völdu fyrir þinn húðtón." },
+        { nafn: "Bbglow contouring", timi: "55 mín.", verd: "15.900 kr." },
+        { nafn: "Dermapen fyrir hárið", timi: "60 mín.", verd: "9.500 kr.", lysing: "Meso-meðferð gegn hárlosi: næringarblanda með vaxtarþáttum og amínósýrum er unnin niður í hársvörðinn." },
+        { nafn: "Fusion Meso Hair Serum F-Ginkgo", timi: "45 mín.", verd: "12.900 kr.", lysing: "Notað með dermapenna. Endurvekur hársekki, eykur blóðflæði í hársverði og dregur úr hárlosi." },
+        { nafn: "Fusion Meso F-Couperix, rósroði", timi: "45 mín.", verd: "13.900 kr.", lysing: "Notað með dermapenna. Styrkir æðar, örvar blóðflæði og vinnur á rósroða og dökkum baugum." },
+        { nafn: "Fusion Meso F-Eye Contour", timi: "45 mín.", verd: "8.900 kr.", lysing: "Notað með dermapenna. Vinnur á baugum, pokum og fínum línum í kringum augun." }
+      ]
+    },
+    {
+      heiti: "Flax-meðferðir",
+      medferdir: [
+        { nafn: "Flaxlift", timi: "60 mín.", verd: "13.900 kr.", lysing: "Nálalaus ynging fyrir andlit og háls sem endurnýjar og birtir efra lag húðar. Árangur varir í allt að 8 til 10 mánuði. Pakkar: 3 skipti 33.000 kr., 4 skipti 42.000 kr., 5 skipti 52.000 kr." },
+        { nafn: "Flax-Sculpt", timi: "45 mín.", verd: "11.900 kr.", lysing: "Serum, virkt krem og gipsmaski. Mótar andlitsfall, þéttir og lyftir, dregur úr þrota og roða. Hentar dömum og herrum á öllum aldri." }
+      ]
+    },
+    {
+      heiti: "Augnhár og augabrúnir",
+      medferdir: [
+        { nafn: "Augnhára Botox", timi: "55 mín.", verd: "13.500 kr.", lysing: "Lagfærir og nærir augnhárin: meiri gljái, mýkt og raki frá fyrstu meðferð." },
+        { nafn: "Litun og plokkun, bæði", timi: "30 mín.", verd: "7.900 kr." },
+        { nafn: "Brow lamination", timi: "30 mín.", verd: "9.500 kr." },
+        { nafn: "Henna litun", timi: "40 mín.", verd: "8.500 kr." }
+      ]
+    },
+    {
+      heiti: "Varanleg förðun, Nanodust",
+      inngangur: "Nano-sprautun litar húðina jafnt og þétt, liturinn fer aðeins á yfirborð húðarinnar og ending er frá 6 og upp í 36 mánuði eftir styrkleika og fjölda umferða.",
+      medferdir: [
+        { nafn: "Nanodust augabrúnir", timi: "120 mín.", verd: "44.000 kr.", lysing: "Púðurkenndar eða ombre augabrúnir." },
+        { nafn: "Nanodust varir", timi: "120 mín.", verd: "46.000 kr.", lysing: "Ombre-varir með jafnri og þéttri litun." }
+      ]
+    },
+    {
+      heiti: "Líkami og sérmeðferðir",
+      medferdir: [
+        { nafn: "RF lifting og Cavitation", timi: "45 mín.", verd: "17.900 kr." },
+        { nafn: "Hyaluron pen lipo", timi: "40 mín.", verd: "19.900 kr.", lysing: "Varanlegt niðurbrot fitupúða til mótunar á andliti og líkama." },
+        { nafn: "Milia korn fjarlægð", timi: "40 mín.", verd: "3.000-15.000 kr.", lysing: "Litlir nabbar undir húðinni sem líkjast fílapenslum. Við losum þig við þau. Verð fer eftir umfangi." },
+        { nafn: "Papiloma og vörtur fjarlægðar", timi: "60 mín.", verd: "3.000-15.000 kr.", lysing: "Húðsepar, vörtur og fleira fjarlægt með plasma-tækni, án skurðar. Verð fer eftir umfangi." }
+      ]
+    },
+    {
+      heiti: "Tilboðspakkar",
+      serstakt: true,
+      medferdir: [
+        { nafn: "HIFU og peeling Trio combo", timi: "90 mín.", verd: "45.800 kr." },
+        { nafn: "HIFU og sýrumeðferð", timi: "90 mín.", verd: "35.100 kr." },
+        { nafn: "HIFU ásamt litun og plokkun", timi: "90 mín.", verd: "30.250 kr." },
+        { nafn: "Lúxus húðhreinsun ásamt litun og plokkun", timi: "90 mín.", verd: "20.600 kr." },
+        { nafn: "Augnhára Botox ásamt brow lamination eða litun og plokkun", timi: "60 mín.", verd: "15.900 kr." }
+      ]
+    }
+  ];
+</script>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#heim">
+      <span class="nafn">Anastasia</span>
+      <span class="tegund">Beauty Studio</span>
+    </a>
+    <nav class="adal" aria-label="Aðalvalmynd">
+      <a href="#um-anastasiu">Um Anastasiu</a>
+      <a href="#medferdir">Meðferðir</a>
+      <a href="#gjafabref">Gjafabréf</a>
+      <a href="#umsagnir">Umsagnir</a>
+      <a href="#stadsetning">Staðsetning</a>
+    </nav>
+    <a class="btn btn-primary noona-link" href="#bokun">Bóka tíma</a>
+  </div>
+</header>
+
+<main id="efni">
+
+  <!-- ================= 1. HETJUKAFLI ================= -->
+  <section class="hero" id="heim">
+    <div class="wrap hero-grid">
+      <div class="inn">
+        <h1>Anastasia <span class="lina2">Beauty Studio</span></h1>
+        <p class="inngangur">Snyrti- og húðmeðferðarstofa á höfuðborgarsvæðinu. Hlýlegt umhverfi, vönduð vinnubrögð og tími sem er bara fyrir þig.</p>
+        <div class="takkar">
+          <a class="btn btn-primary noona-link" href="#bokun">Bóka tíma</a>
+          <a class="btn btn-ghost" href="#medferdir">Sjá meðferðir</a>
+        </div>
+      </div>
+      <!-- GARÐAR: MYND - vistaðu ljósmyndina af skiltinu sem
+           myndir/stofa-skilti.jpg og hún birtist sjálfkrafa hér. -->
+      <div class="ph ph-hero inn inn-2">
+        <img class="ph-mynd" src="myndir/stofa-skilti.jpg" alt="Skilti Anastasia Beauty Studio í glugga stofunnar" onerror="this.remove()">
+        <span class="ph-heiti">Mynd af stofunni</span>
+        <span class="ph-skyring">Vistaðu sem myndir/stofa-skilti.jpg</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2. UM ANASTASIU ================= -->
+  <section id="um-anastasiu">
+    <div class="wrap um-grid">
+      <!-- GARÐAR: MYND - vistaðu portrettmyndina af Anastasiu sem
+           myndir/anastasia.jpg og hún birtist sjálfkrafa hér. -->
+      <div class="ph ph-portrett reveal">
+        <img class="ph-mynd" src="myndir/anastasia.jpg" alt="Anastasia á stofunni, með skírteini og vottanir á veggnum" onerror="this.remove()">
+        <span class="ph-heiti">Anastasia</span>
+        <span class="ph-skyring">Vistaðu sem myndir/anastasia.jpg</span>
+      </div>
+      <div class="um-texti reveal">
+        <div class="kafli-haus">
+          <div class="h-lina"></div>
+          <h2>Kynntu þér Anastasiu</h2>
+        </div>
+        <!-- GARÐAR: skiptu hornklofatextanum út fyrir alvöru texta frá Anastasiu. -->
+        <p>Anastasia er [starfsheiti, t.d. snyrtifræðingur] með [X] ára reynslu af snyrti- og húðmeðferðum. Hún leggur áherslu á persónulega þjónustu í rólegu umhverfi þar sem hver og einn fær tíma og athygli.</p>
+        <p>[Hér kemur stutt kynning frá Anastasiu sjálfri: bakgrunnur hennar, nálgun og hvers vegna hún opnaði stofuna. Tvær til þrjár setningar.]</p>
+        <div class="menntun">
+          <h3>Menntun og reynsla</h3>
+          <!-- GARÐAR: bættu við eða fjarlægðu línur eftir þörfum. -->
+          <ul>
+            <li><strong>[Nám og skóli]</strong>, [ártal]</li>
+            <li><strong>[Framhaldsnámskeið eða vottun]</strong>, [ártal]</li>
+            <li><strong>[Sérhæfing eða réttindi]</strong>, [ártal]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. MEÐFERÐIR ================= -->
+  <section id="medferdir">
+    <div class="wrap">
+      <div class="kafli-haus reveal">
+        <div class="h-lina"></div>
+        <h2>Meðferðir</h2>
+        <p class="undir">Smelltu á meðferð til að lesa nánar og á Bóka tíma til að velja tíma sem hentar þér.</p>
+      </div>
+      <div class="flokkar" id="medferda-flokkar">
+        <noscript><p>Kveiktu á JavaScript til að sjá meðferðalistann.</p></noscript>
+      </div>
+      <p class="verd-vidmid reveal">Verð eru viðmið. Þar sem verðbil er gefið fer endanlegt verð eftir umfangi og er staðfest við bókun.</p>
+      <div class="takkar medferdir-cta reveal">
+        <a class="btn btn-primary noona-link" href="#bokun">Bóka tíma</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. GJAFABRÉF ================= -->
+  <section id="gjafabref">
+    <div class="wrap gjof reveal">
+      <p class="merki">Gjafabréf</p>
+      <h2>Dekur að gjöf</h2>
+      <p>Gjafabréf frá Anastasia Beauty Studio er falleg gjöf við öll tækifæri. Þú velur meðferð eða upphæð og við útbúum fallegt gjafabréf.</p>
+      <a class="btn btn-primary" href="#bokun">Hafa samband</a>
+    </div>
+  </section>
+
+  <!-- ================= 5. MYNDIR AF STOFUNNI ================= -->
+  <section id="myndir">
+    <div class="wrap">
+      <div class="kafli-haus mid reveal">
+        <div class="h-lina"></div>
+        <h2>Stofan</h2>
+        <p class="undir">Innlit í stofuna og andrúmsloftið.</p>
+      </div>
+      <!-- GARÐAR: MYND - vistaðu gallerímyndirnar sem myndir/galleri-1.jpg
+           til galleri-6.jpg og þær birtast sjálfkrafa. Fyrsta hólfið er
+           stærst, settu bestu myndina þar. Uppfærðu alt-textana þegar
+           þú veist hvað er á hverri mynd. -->
+      <div class="galleri reveal">
+        <div class="ph g-stor"><img class="ph-mynd" src="myndir/galleri-1.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-heiti">Mynd 1</span><span class="ph-skyring">myndir/galleri-1.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="myndir/galleri-2.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-heiti">Mynd 2</span><span class="ph-skyring">myndir/galleri-2.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="myndir/galleri-3.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-heiti">Mynd 3</span><span class="ph-skyring">myndir/galleri-3.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="myndir/galleri-4.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-heiti">Mynd 4</span><span class="ph-skyring">myndir/galleri-4.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="myndir/galleri-5.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-heiti">Mynd 5</span><span class="ph-skyring">myndir/galleri-5.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="myndir/galleri-6.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-heiti">Mynd 6</span><span class="ph-skyring">myndir/galleri-6.jpg</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. FYRIR OG EFTIR ================= -->
+  <section id="fyrir-eftir">
+    <div class="wrap">
+      <div class="kafli-haus reveal">
+        <div class="h-lina"></div>
+        <h2>Fyrir og eftir</h2>
+        <p class="undir">Dæmi um árangur meðferða þar sem það á við.</p>
+      </div>
+      <div class="fe-grid">
+        <!-- GARÐAR: MYND - samsettu fyrir/eftir myndirnar (fyrir efst, eftir
+             neðst) eru vistaðar sem myndir/fyrir-eftir-1.jpg og -2.jpg.
+             Staðfestu heiti meðferðarinnar í "medferd-nafn" fyrir hverja mynd. -->
+        <figure class="par reveal">
+          <div class="fe-mynd">
+            <img src="myndir/fyrir-eftir-1.jpg" alt="Fyrir og eftir meðferð á augnsvæði: húðin þéttari og augun opnari" onerror="this.remove()">
+            <div class="ph-fyllitexti"><span class="ph-heiti">Fyrir og eftir</span><span class="ph-skyring">myndir/fyrir-eftir-1.jpg</span></div>
+          </div>
+          <figcaption class="medferd-nafn">Fibroblast Plasma augnlyfting</figcaption>
+        </figure>
+        <figure class="par reveal">
+          <div class="fe-mynd">
+            <img src="myndir/fyrir-eftir-2.jpg" alt="Fyrir og eftir meðferð á augnsvæði: minni baugar og bjartari húð" onerror="this.remove()">
+            <div class="ph-fyllitexti"><span class="ph-heiti">Fyrir og eftir</span><span class="ph-skyring">myndir/fyrir-eftir-2.jpg</span></div>
+          </div>
+          <figcaption class="medferd-nafn">Fibroblast Plasma augnlyfting</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7. UMSAGNIR ================= -->
+  <section id="umsagnir">
+    <div class="wrap">
+      <div class="kafli-haus mid reveal">
+        <div class="h-lina"></div>
+        <h2>Umsagnir</h2>
+        <p class="undir">Umsagnir frá viðskiptavinum á Facebook.</p>
+      </div>
+      <!-- GARÐAR: alvöru Facebook-umsagnir. Bættu við fleirum eftir sama sniði
+           þegar Anastasia safnar þeim. -->
+      <div class="umsagnir-grid">
+        <article class="umsogn reveal">
+          <div class="stjornur" aria-hidden="true">★★★★★</div>
+          <span class="sr-only">Mælir með</span>
+          <blockquote>„Mæli svo mikið með! Frábær þjónusta.“</blockquote>
+          <p class="hver">Linda Lentz</p>
+          <p class="hlutverk">Mælir með á Facebook</p>
+        </article>
+        <article class="umsogn reveal">
+          <div class="stjornur" aria-hidden="true">★★★★★</div>
+          <span class="sr-only">Mælir með</span>
+          <blockquote>„Mæli endalaust með í varir og húðhreinsun. Ekkert smá fallegt og vandlega gert, mjög ánægð!“</blockquote>
+          <p class="hver">Ingibjörg Ósk</p>
+          <p class="hlutverk">Mælir með á Facebook</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. OPNUNARTÍMAR OG STAÐSETNING ================= -->
+  <section id="stadsetning">
+    <div class="wrap">
+      <div class="kafli-haus reveal">
+        <div class="h-lina"></div>
+        <h2>Opnunartímar og staðsetning</h2>
+      </div>
+      <div class="stad-grid">
+        <!-- GARÐAR: staðfestu opnunartíma hjá Anastasiu. -->
+        <ul class="timar reveal">
+          <li><span>Mánudagar til fimmtudaga</span><span>09:00-18:00</span></li>
+          <li><span>Föstudagar</span><span>09:00-16:00</span></li>
+          <li><span>Laugardagar</span><span>Eftir samkomulagi</span></li>
+          <li><span>Sunnudagar</span><span>Lokað</span></li>
+        </ul>
+        <div class="stad-kort reveal">
+          <h3>Staðsetning</h3>
+          <p>Anastasia Beauty Studio<br>Víkurhvarf 1<br>203 Kópavogur</p>
+          <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=V%C3%ADkurhvarf%201%2C%20203%20K%C3%B3pavogur" target="_blank" rel="noopener">Opna í Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9. BÓKUN OG SAMBAND ================= -->
+  <section id="bokun">
+    <div class="wrap">
+      <div class="kafli-haus reveal">
+        <div class="h-lina"></div>
+        <h2>Bókaðu þinn tíma</h2>
+        <p class="undir">Bókaðu beint á netinu í gegnum Noona. Ef þú ert ekki viss hvaða meðferð hentar þér er alltaf velkomið að hafa samband.</p>
+        <div class="takkar">
+          <a class="btn btn-light noona-link" href="#bokun">Bóka tíma</a>
+        </div>
+        <div class="samband">
+          <p><strong>Sími:</strong> <a href="tel:+3547823232">+354 782 3232</a></p>
+          <p><strong>Netfang:</strong> <a href="mailto:nastasia.pavlova@gmail.com">nastasia.pavlova@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap inni">
+    <p>© <span id="ar">2026</span> Anastasia Beauty Studio</p>
+    <p>Hönnun og smíði: Garðar Freyr Valdimarsson</p>
+    <!-- GARÐAR: ef Anastasia er með Instagram, bættu við:
+         <p><a href="INSTAGRAM_LINK_HERE">Instagram</a></p> -->
+  </div>
+</footer>
+
+<!-- Föst bókunarstika neðst á símaskjám -->
+<div id="bokunar-stika">
+  <a class="btn btn-primary noona-link" href="#bokun">Bóka tíma</a>
+</div>
+
+<script>
+  /* ---------- Meðferðaspjöldin teiknuð úr MEDFERDAFLOKKAR ---------- */
+  (function(){
+    const geymir = document.getElementById('medferda-flokkar');
+    MEDFERDAFLOKKAR.forEach(function(fl){
+      const panel = document.createElement('section');
+      panel.className = 'flokkur reveal' + (fl.serstakt ? ' flokkur-tilbod' : '');
+
+      const h3 = document.createElement('h3');
+      h3.textContent = fl.heiti;
+      panel.appendChild(h3);
+
+      if (fl.inngangur){
+        const inng = document.createElement('p');
+        inng.className = 'flokk-inngangur';
+        inng.textContent = fl.inngangur;
+        panel.appendChild(inng);
+      }
+
+      fl.medferdir.forEach(function(m){
+        const toppur = document.createElement('div');
+        toppur.className = 'med-toppur';
+        const nafn = document.createElement('span');
+        nafn.className = 'med-nafn';
+        nafn.textContent = m.nafn;
+        const verd = document.createElement('span');
+        verd.className = 'verd';
+        verd.textContent = m.verd;
+        toppur.append(nafn, verd);
+
+        const timi = document.createElement('span');
+        timi.className = 'timi';
+        timi.textContent = m.timi;
+
+        if (m.lysing){
+          const rod = document.createElement('details');
+          rod.className = 'med-rod';
+          const summary = document.createElement('summary');
+          const efni = document.createElement('div');
+          efni.append(toppur, timi);
+          const togg = document.createElement('span');
+          togg.className = 'togg';
+          togg.textContent = '+';
+          togg.setAttribute('aria-hidden', 'true');
+          summary.append(efni, togg);
+          const lysing = document.createElement('p');
+          lysing.className = 'med-lysing';
+          lysing.textContent = m.lysing;
+          rod.append(summary, lysing);
+          panel.appendChild(rod);
+        } else {
+          const rod = document.createElement('div');
+          rod.className = 'med-rod med-stok';
+          rod.append(toppur, timi);
+          panel.appendChild(rod);
+        }
+      });
+
+      geymir.appendChild(panel);
+    });
+  })();
+
+  /* ---------- Noona-hlekkurinn settur á alla bókunartakka ---------- */
+  (function(){
+    const gildurHlekkur = NOONA_URL && NOONA_URL !== 'NOONA_LINK_HERE';
+    document.querySelectorAll('.noona-link').forEach(function(a){
+      if (gildurHlekkur){
+        a.href = NOONA_URL;
+        a.target = '_blank';
+        a.rel = 'noopener';
+      }
+      /* Þar til hlekkurinn kemur vísa takkarnir á #bokun (sett í HTML). */
+    });
+  })();
+
+  /* ---------- Bókunarstikan felur sig við bókunarkaflann ---------- */
+  (function(){
+    const stika = document.getElementById('bokunar-stika');
+    const bokun = document.getElementById('bokun');
+    if (!stika || !bokun || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function(faerslur){
+      faerslur.forEach(function(f){
+        stika.classList.toggle('falin', f.isIntersecting);
+      });
+    }, { threshold: 0.15 }).observe(bokun);
+  })();
+
+  /* ---------- Ártal í fæti ---------- */
+  document.getElementById('ar').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
