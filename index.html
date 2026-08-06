@@ -9,7 +9,7 @@
     2) MEDFERDAFLOKKAR   – meðferðirnar, tvítyngdar {is,en}, sama script
     3) TEXTAR (T)        – allur fastur texti síðunnar, tvítyngdur {is,en}
                            í neðra <script>. Breyttu hér til að breyta texta.
-    4) Myndir            – vistaðu í möppuna "myndir/":
+    4) Myndir            – vistaðu í rót verkefnisins (sömu möppu og index.html):
                            logo.png (merki í haus), stofa-skilti.jpg (hetja),
                            anastasia.jpg (portrett), galleri-1..6.jpg,
                            fyrir-eftir-1.jpg, fyrir-eftir-2.jpg,
@@ -153,7 +153,7 @@ section{ padding:98px 0; }
 .um-grid{ display:grid; gap:48px; align-items:center; }
 .um-vinstri{ display:flex; flex-direction:column; }
 /* GARÐAR: portrett er lóðrétt. Vistaðu fagmannlegu portrettmyndina sem
-   myndir/anastasia.jpg og hún birtist hér. */
+   anastasia.jpg og hún birtist hér. */
 .ph-portrett{ aspect-ratio:4/5; max-width:420px; width:100%; }
 .um-texti p{ color:var(--muted); margin-top:16px; max-width:64ch; }
 .um-texti p:first-of-type{ color:var(--ink); }
@@ -493,9 +493,9 @@ footer.site a{ color:var(--dark-muted); }
 <header class="site">
   <div class="wrap bar">
     <a class="brand" href="#heim" aria-label="Anastasia Beauty Studio">
-      <!-- GARÐAR: MYND - vistaðu merkið sem myndir/logo.png og það birtist hér.
+      <!-- GARÐAR: MYND - vistaðu merkið sem logo.png og það birtist hér.
            Þar til það kemur sést fallegt augnhára-/augabrúnamerki + nafn. -->
-      <img class="brand-logo" src="myndir/logo.jpg" alt="Anastasia Beauty Studio" onerror="this.remove(); var f=document.getElementById('brandFallback'); if(f){ f.hidden=false; }">
+      <img class="brand-logo" src="logo.jpg" alt="Anastasia Beauty Studio" onerror="this.remove(); var f=document.getElementById('brandFallback'); if(f){ f.hidden=false; }">
       <span class="brand-fallback" id="brandFallback" hidden>
         <svg class="brand-mark" viewBox="0 0 88 60" aria-hidden="true">
           <path d="M12 16 Q44 2 76 16" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
@@ -537,11 +537,11 @@ footer.site a{ color:var(--dark-muted); }
         <span class="wm-script">Anastasia Beauty</span>
         <span class="wm-studio">Studio</span>
       </h1>
-      <!-- GARÐAR: MYND - myndir/stofa-hero.jpg (hlý innimynd af stofunni/meðferðarrými). -->
+      <!-- GARÐAR: MYND - stofa-hero.jpg (hlý innimynd af stofunni/meðferðarrými). -->
       <div class="ph ph-hero inn inn-2">
-        <img class="ph-mynd" src="myndir/stofa-hero.jpg" alt="Meðferðarrými Anastasia Beauty Studio" onerror="this.remove()">
+        <img class="ph-mynd" src="stofa-hero.jpg" alt="Meðferðarrými Anastasia Beauty Studio" onerror="this.remove()">
         <span class="ph-heiti">Mynd af stofunni</span>
-        <span class="ph-skyring">myndir/stofa-hero.jpg</span>
+        <span class="ph-skyring">stofa-hero.jpg</span>
       </div>
       <div class="hero-lower inn inn-2">
         <p class="inngangur" data-i18n="heroInngangur">Snyrti- og húðmeðferðarstofa á höfuðborgarsvæðinu. Hlýlegt umhverfi, vönduð vinnubrögð og tími sem er bara fyrir þig.</p>
@@ -559,11 +559,11 @@ footer.site a{ color:var(--dark-muted); }
     <div class="wrap um-grid">
       <div class="um-vinstri reveal">
         <!-- GARÐAR: MYND - vistaðu fagmannlegu portrettmyndina sem
-             myndir/anastasia.jpg og hún birtist hér. -->
+             anastasia.jpg og hún birtist hér. -->
         <div class="ph ph-portrett">
-          <img class="ph-mynd" src="myndir/anastasia.jpg" alt="Anastasia, eigandi Anastasia Beauty Studio" onerror="this.remove()">
+          <img class="ph-mynd" src="anastasia.jpg" alt="Anastasia, eigandi Anastasia Beauty Studio" onerror="this.remove()">
           <span class="ph-heiti">Anastasia</span>
-          <span class="ph-skyring">Vistaðu sem myndir/anastasia.jpg</span>
+          <span class="ph-skyring">Vistaðu sem anastasia.jpg</span>
         </div>
       </div>
       <div class="um-texti reveal">
@@ -600,10 +600,10 @@ footer.site a{ color:var(--dark-muted); }
   <!-- ================= 4. GJAFABRÉF ================= -->
   <section id="gjafabref">
     <div class="wrap gjof reveal">
-      <!-- GARÐAR: MYND - myndir/gjafabref.jpg (t.d. gjafabréf/gjafapoki). -->
+      <!-- GARÐAR: MYND - gjafabref.jpg (t.d. gjafabréf/gjafapoki). -->
       <div class="gjof-mynd">
-        <img src="myndir/gjafabref.jpg" alt="Gjafabréf frá Anastasia Beauty Studio" onerror="this.remove()">
-        <div class="ph-fyllitexti"><span class="ph-heiti">Gjafabréf</span><span class="ph-skyring">myndir/gjafabref.jpg</span></div>
+        <img src="gjafabref.jpg" alt="Gjafabréf frá Anastasia Beauty Studio" onerror="this.remove()">
+        <div class="ph-fyllitexti"><span class="ph-heiti">Gjafabréf</span><span class="ph-skyring">gjafabref.jpg</span></div>
       </div>
       <p class="merki" data-i18n="gjofMerki">Gjafabréf</p>
       <h2 data-i18n="gjofHeading">Dekur að gjöf</h2>
@@ -623,12 +623,12 @@ footer.site a{ color:var(--dark-muted); }
       <!-- GARÐAR: MYND - stofumyndir. Fyrsta hólfið er stærst.
            galleri-6 = gamla skiltamyndin, galleri-7 = gamla portrettið. -->
       <div class="galleri reveal">
-        <div class="ph g-stor"><img class="ph-mynd" src="myndir/galleri-2.jpg" alt="Meðferðarrými Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">myndir/galleri-2.jpg</span></div>
-        <div class="ph"><img class="ph-mynd" src="myndir/galleri-3.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">myndir/galleri-3.jpg</span></div>
-        <div class="ph"><img class="ph-mynd" src="myndir/galleri-4.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">myndir/galleri-4.jpg</span></div>
-        <div class="ph"><img class="ph-mynd" src="myndir/galleri-5.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">myndir/galleri-5.jpg</span></div>
-        <div class="ph"><img class="ph-mynd" src="myndir/galleri-6.jpg" alt="Skilti Anastasia Beauty Studio á vegg stofunnar" onerror="this.remove()"><span class="ph-skyring">myndir/galleri-6.jpg</span></div>
-        <div class="ph"><img class="ph-mynd" src="myndir/galleri-7.jpg" alt="Anastasia á stofunni" onerror="this.remove()"><span class="ph-skyring">myndir/galleri-7.jpg</span></div>
+        <div class="ph g-stor"><img class="ph-mynd" src="galleri-2.jpg" alt="Meðferðarrými Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">galleri-2.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="galleri-3.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">galleri-3.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="galleri-4.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">galleri-4.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="galleri-5.jpg" alt="Stofan hjá Anastasia Beauty Studio" onerror="this.remove()"><span class="ph-skyring">galleri-5.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="galleri-6.jpg" alt="Skilti Anastasia Beauty Studio á vegg stofunnar" onerror="this.remove()"><span class="ph-skyring">galleri-6.jpg</span></div>
+        <div class="ph"><img class="ph-mynd" src="galleri-7.jpg" alt="Anastasia á stofunni" onerror="this.remove()"><span class="ph-skyring">galleri-7.jpg</span></div>
       </div>
     </div>
   </section>
@@ -644,15 +644,15 @@ footer.site a{ color:var(--dark-muted); }
       <div class="fe-grid">
         <figure class="par reveal">
           <div class="fe-mynd">
-            <img src="myndir/fyrir-eftir-1.jpg" alt="Fyrir og eftir meðferð á augnsvæði: húðin þéttari og augun opnari" onerror="this.remove()">
-            <div class="ph-fyllitexti"><span class="ph-heiti">Fyrir og eftir</span><span class="ph-skyring">myndir/fyrir-eftir-1.jpg</span></div>
+            <img src="fyrir-eftir-1.jpg" alt="Fyrir og eftir meðferð á augnsvæði: húðin þéttari og augun opnari" onerror="this.remove()">
+            <div class="ph-fyllitexti"><span class="ph-heiti">Fyrir og eftir</span><span class="ph-skyring">fyrir-eftir-1.jpg</span></div>
           </div>
           <figcaption class="medferd-nafn" data-i18n="feCaption1">Fibroblast Plasma augnlyfting</figcaption>
         </figure>
         <figure class="par reveal">
           <div class="fe-mynd">
-            <img src="myndir/fyrir-eftir-2.jpg" alt="Fyrir og eftir meðferð á augnsvæði: minni baugar og bjartari húð" onerror="this.remove()">
-            <div class="ph-fyllitexti"><span class="ph-heiti">Fyrir og eftir</span><span class="ph-skyring">myndir/fyrir-eftir-2.jpg</span></div>
+            <img src="fyrir-eftir-2.jpg" alt="Fyrir og eftir meðferð á augnsvæði: minni baugar og bjartari húð" onerror="this.remove()">
+            <div class="ph-fyllitexti"><span class="ph-heiti">Fyrir og eftir</span><span class="ph-skyring">fyrir-eftir-2.jpg</span></div>
           </div>
           <figcaption class="medferd-nafn" data-i18n="feCaption2">Fibroblast Plasma augnlyfting</figcaption>
         </figure>
@@ -717,21 +717,21 @@ footer.site a{ color:var(--dark-muted); }
         <h2 data-i18n="finnduHeading">Finndu okkur</h2>
         <p class="undir" data-i18n="finnduUndir">Svona ratarðu á stofuna.</p>
       </div>
-      <!-- GARÐAR: MYND - myndir/finndu-1.jpg (framhlið) og finndu-2.jpg (inngangur). -->
+      <!-- GARÐAR: MYND - finndu-1.jpg (framhlið) og finndu-2.jpg (inngangur). -->
       <div class="finndu-grid">
         <figure class="finndu-item reveal">
           <div class="finndu-mynd">
             <span class="finndu-badge">1</span>
-            <img src="myndir/finndu-1.jpg" alt="Húsið þar sem Anastasia Beauty Studio er, með ör sem sýnir leiðina" onerror="this.remove()">
-            <div class="ph-fyllitexti"><span class="ph-heiti" data-i18n="finnduPh1">Húsið</span><span class="ph-skyring">myndir/finndu-1.jpg</span></div>
+            <img src="finndu-1.jpg" alt="Húsið þar sem Anastasia Beauty Studio er, með ör sem sýnir leiðina" onerror="this.remove()">
+            <div class="ph-fyllitexti"><span class="ph-heiti" data-i18n="finnduPh1">Húsið</span><span class="ph-skyring">finndu-1.jpg</span></div>
           </div>
           <figcaption class="finndu-texti" data-i18n="finndu1Caption">Þetta er húsið sem þú leitar að. Keyrðu upp vinstra megin við húsið, eins og örin sýnir.</figcaption>
         </figure>
         <figure class="finndu-item reveal">
           <div class="finndu-mynd">
             <span class="finndu-badge">2</span>
-            <img src="myndir/finndu-2.jpg" alt="Inngangur Anastasia Beauty Studio með stóru bílastæði" onerror="this.remove()">
-            <div class="ph-fyllitexti"><span class="ph-heiti" data-i18n="finnduPh2">Inngangurinn</span><span class="ph-skyring">myndir/finndu-2.jpg</span></div>
+            <img src="finndu-2.jpg" alt="Inngangur Anastasia Beauty Studio með stóru bílastæði" onerror="this.remove()">
+            <div class="ph-fyllitexti"><span class="ph-heiti" data-i18n="finnduPh2">Inngangurinn</span><span class="ph-skyring">finndu-2.jpg</span></div>
           </div>
           <figcaption class="finndu-texti" data-i18n="finndu2Caption">Beygðu svo strax til hægri. Þar er stórt bílastæði og inngangur stofunnar.</figcaption>
         </figure>
