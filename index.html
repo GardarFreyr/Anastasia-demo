@@ -189,6 +189,9 @@ details.med-rod .togg{
 }
 details.med-rod[open] .togg{ transform:rotate(45deg); }
 .med-lysing{ margin:10px 0 4px; font-size:14px; color:var(--muted); max-width:62ch; }
+/* Valfrjáls kynningarmynd meðferðar - sýnd heil (án klippingar), smellanleg. */
+.med-mynd{ display:inline-block; margin:12px 0 6px; border-radius:12px; overflow:hidden; border:1px solid var(--line-soft); box-shadow:0 8px 22px var(--shadow); }
+.med-mynd img{ display:block; width:auto; height:auto; max-width:min(320px, 100%); max-height:560px; }
 .flokkur-tilbod{ background:var(--blush); border-color:var(--line-soft); }
 .medferdir-cta{ margin-top:26px; }
 .verd-vidmid{ margin-top:26px; font-size:13.5px; color:var(--muted); }
@@ -368,7 +371,8 @@ footer.site a{ color:var(--dark-muted); }
      ATH - staðfestu hjá Anastasiu:
      - "Brow lamination" (var "Brown Lamination" á Noona) og
        "Bbglow contouring" (var "countering") – stafsetning löguð.
-     - Flaxlift: 13.900 kr. í bókunarkerfi en 11.900 kr. í lýsingu. Staðfestu.
+     - GeneO+ meðferðir: lengd (mín.) er áætluð, staðfestu hjá Anastasiu.
+     - Meðferð getur haft "mynd" (skráarnafn) sem birtist opin undir lýsingu.
      - Fyrir/eftir myndir: "Fibroblast Plasma augnlyfting" er ágiskun. Staðfestu. */
   const MEDFERDAFLOKKAR = [
     {
@@ -403,6 +407,10 @@ footer.site a{ color:var(--dark-muted); }
     {
       heiti: { is: "Húðhreinsanir", en: "Facials & cleansing" },
       medferdir: [
+        { nafn: { is: "GeneO+", en: "GeneO+" }, timi: 60, verd: "15.900 kr.", mynd: "geneo-plus.jpg", lysing: { is: "4-í-1 lúxus húðhreinsun sem súrefnismettar, flagnar, nærir og endurnýjar húðina. Hentar öllum húðgerðum, tafarlaus ljómi án niðurtíma.", en: "4-in-1 super facial that oxygenates, exfoliates, infuses and renews the skin. Suitable for all skin types, instant glow with no downtime." } },
+        { nafn: { is: "GeneO+ og RF lift", en: "GeneO+ and RF lift" }, timi: 75, verd: "19.900 kr.", lysing: { is: "GeneO+ húðhreinsun ásamt RF-lyftingu fyrir aukna þéttingu.", en: "GeneO+ facial combined with RF lifting for added firming." } },
+        { nafn: { is: "GeneO+, RF lift og neo-massage", en: "GeneO+, RF lift and neo-massage" }, timi: 90, verd: "25.900 kr.", lysing: { is: "GeneO+ húðhreinsun með RF-lyftingu, neo-nuddi, maska og LED-ljósameðferð.", en: "GeneO+ facial with RF lifting, neo-massage, mask and LED light therapy." } },
+        { nafn: { is: "AHA + BHA peeling með spíklum", en: "AHA + BHA Peel with Spicules" }, timi: 45, verd: "14.900 kr.", mynd: "aha-bha.jpg", lysing: { is: "Efnapeeling með náttúrulegum örnálum (spíklum) sem flagnar djúpt, bætir áferð og húðtón, dregur úr bólumerkjum og litamun, minnkar svitaholur og örvar kollagen.", en: "A chemical peel with natural micro-needles that deeply exfoliates, improves texture and tone, reduces acne marks and pigmentation, minimises pores and stimulates collagen." } },
         { nafn: { is: "Húðhreinsun", en: "Facial cleanse" }, timi: 60, verd: "15.500 kr.", lysing: { is: "Ensím-peeling, ultrasonic húðhreinsitæki, demantaslípun, algínat-andlitsmaski og LED-ljósameðferð.", en: "Enzyme peel, ultrasonic cleansing device, diamond microdermabrasion, an alginate face mask and LED light therapy." } },
         { nafn: { is: "Lúxus húðhreinsun", en: "Luxury facial cleanse" }, timi: 90, verd: "17.900 kr.", lysing: { is: "Sýrumeðferð, ultrasonic húðhreinsun, demantaslípun, andlitslyftinudd og algínat-maski með LED-ljósi.", en: "Acid treatment, ultrasonic cleansing, diamond microdermabrasion, a lifting facial massage and an alginate mask with LED light." } },
         { nafn: { is: "Hydropeel húðhreinsun", en: "Hydropeel facial" }, timi: 60, verd: "13.900 kr.", lysing: { is: "Sameinar örslípun, djúpvirkt peeling og innspýtingu hýalúrónsýru og kollagens. Vinnur á fínum línum, stíflaðum svitaholum, litamun og þurri húð.", en: "Combines microdermabrasion, a deep peel and infusion of hyaluronic acid and collagen. Works on fine lines, congested pores, uneven tone and dry skin." } },
@@ -443,8 +451,8 @@ footer.site a{ color:var(--dark-muted); }
     {
       heiti: { is: "Flax-meðferðir", en: "Flax treatments" },
       medferdir: [
-        { nafn: { is: "Flaxlift", en: "Flaxlift" }, timi: 60, verd: "13.900 kr.", lysing: { is: "Nálalaus ynging fyrir andlit og háls sem endurnýjar og birtir efra lag húðar. Árangur varir í allt að 8 til 10 mánuði. Pakkar: 3 skipti 33.000 kr., 4 skipti 42.000 kr., 5 skipti 52.000 kr.", en: "A needle-free rejuvenation for the face and neck that renews and brightens the upper layer of skin. Results last up to 8 to 10 months. Packages: 3 sessions 33.000 kr., 4 sessions 42.000 kr., 5 sessions 52.000 kr." } },
-        { nafn: { is: "Flax-Sculpt", en: "Flax-Sculpt" }, timi: 45, verd: "11.900 kr.", lysing: { is: "Serum, virkt krem og gipsmaski. Mótar andlitsfall, þéttir og lyftir, dregur úr þrota og roða. Hentar dömum og herrum á öllum aldri.", en: "Serum, an active cream and a plaster mask. Sculpts the face, firms and lifts, and reduces puffiness and redness. Suitable for women and men of all ages." } }
+        { nafn: { is: "Flaxlift", en: "Flaxlift" }, timi: 60, verd: "12.900 kr.", lysing: { is: "Nálalaus ynging fyrir andlit og háls sem endurnýjar og birtir efra lag húðar. Árangur varir í allt að 8 til 10 mánuði. Pakkar: 3 skipti 33.000 kr., 4 skipti 42.000 kr., 5 skipti 52.000 kr.", en: "A needle-free rejuvenation for the face and neck that renews and brightens the upper layer of skin. Results last up to 8 to 10 months. Packages: 3 sessions 33.000 kr., 4 sessions 42.000 kr., 5 sessions 52.000 kr." } },
+        { nafn: { is: "Flax-Sculpt", en: "Flax-Sculpt" }, timi: 45, verd: "12.900 kr.", lysing: { is: "Serum, virkt krem og gipsmaski. Mótar andlitsfall, þéttir og lyftir, dregur úr þrota og roða. Hentar dömum og herrum á öllum aldri.", en: "Serum, an active cream and a plaster mask. Sculpts the face, firms and lifts, and reduces puffiness and redness. Suitable for women and men of all ages." } }
       ]
     },
     {
@@ -921,7 +929,8 @@ footer.site a{ color:var(--dark-muted); }
         timi.textContent = m.timi + (lang === 'is' ? ' mín.' : ' min.');
 
         const lys = tr(m.lysing, lang);
-        if(lys){
+        const myndSrc = m.mynd;
+        if(lys || myndSrc){
           const rod = document.createElement('details');
           rod.className = 'med-rod';
           const summary = document.createElement('summary');
@@ -932,10 +941,27 @@ footer.site a{ color:var(--dark-muted); }
           togg.textContent = '+';
           togg.setAttribute('aria-hidden', 'true');
           summary.append(efni, togg);
-          const p = document.createElement('p');
-          p.className = 'med-lysing';
-          p.textContent = lys;
-          rod.append(summary, p);
+          rod.append(summary);
+          if(lys){
+            const p = document.createElement('p');
+            p.className = 'med-lysing';
+            p.textContent = lys;
+            rod.append(p);
+          }
+          if(myndSrc){
+            const hlekkur = document.createElement('a');
+            hlekkur.className = 'med-mynd';
+            hlekkur.href = myndSrc;
+            hlekkur.target = '_blank';
+            hlekkur.rel = 'noopener';
+            hlekkur.title = (lang === 'is') ? 'Smelltu til að sjá í fullri stærð' : 'Click to view full size';
+            const mimg = document.createElement('img');
+            mimg.alt = tr(m.nafn, lang);
+            mimg.onerror = function(){ hlekkur.remove(); }; /* engin mynd -> hlekkurinn hverfur */
+            mimg.src = myndSrc;
+            hlekkur.append(mimg);
+            rod.append(hlekkur);
+          }
           panel.appendChild(rod);
         } else {
           const rod = document.createElement('div');
